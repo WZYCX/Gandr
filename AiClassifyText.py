@@ -4,6 +4,10 @@ from string import punctuation
 from heapq import nlargest
 import re
 
+
+POS_TAG = ['PROPN', 'ADJ', 'NOUN', 'VERB']
+
+
 datafromFile = open("C:/Users/tiech/Downloads/retroreport.txt", "r", encoding="utf8")
 
 readData = datafromFile.read()
@@ -52,25 +56,26 @@ def summarizeText(text, per):
     final_summary = [word.text for word in summary]
     summary = "".join(final_summary)
     
-    
-    
-    #return
     return summary
 
 
 def get_keywords(text):
-    #constants
-    result = []
-    pos_tag = ['PROPN', 'ADJ', 'NOUN', 'VERB'] 
-    document = nlp(text)
-    
-    #algorithm
-    for token in document:
-        if token.text in nlp.Defaults.stop_words or token.text in punctuation:
+    keywords = list()
+    keywords_count = dict()
+    for token in nlp(text):
+        if token.text in nlp.Defaults.stop_words:
             continue
-        if token.pos_ in pos_tag:
-            result.append(token.text)
-    return result
+        if token.text in punctuation:
+            continue
+        if token.pos_ in POS_TAG:
+            keyword = token.text
+            if keyword in keywords_count:
+                keywords_count[keyword] += 1
+            else:
+                keywords_count[keyword] = 1
+                keywords.append(keyword)
+    keywords.sort(key=lambda x: keywords_count[x], reverse=True)
+    return keywords
     
     
-print(set(get_keywords(cleanedText)))
+print(get_keywords(cleanedText))
