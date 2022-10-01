@@ -59,7 +59,7 @@ def summarizeText(text, per):
     return summary
 
 
-def get_keywords(text):
+def get_keywords(text, length):
     keywords = list()
     keywords_count = dict()
     for token in nlp(text):
@@ -75,7 +75,7 @@ def get_keywords(text):
                 keywords_count[keyword] = 1
                 keywords.append(keyword)
     keywords.sort(key=lambda x: keywords_count[x], reverse=True)
-    return keywords
+    return keywords[:length]
     
     
-print(get_keywords(cleanedText))
+print(get_keywords(cleanedText, 10))
