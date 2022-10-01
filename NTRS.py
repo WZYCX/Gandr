@@ -1,7 +1,8 @@
 import asyncio
 import aiohttp
 import requests
-
+import WordClassDB
+import AiClassifyText
 
 # Removes certificate verification warning from requests
 import urllib3
@@ -36,7 +37,7 @@ def async_get(document_ids, function):
 
 # Gets the documents using the document ids from the NTRS API
 
-def get(document_ids, classify, store):
+def get(document_ids):
 
     for document_id in document_ids:
             url = API + f"citations/{document_id}/downloads/{document_id}.txt"
@@ -45,5 +46,8 @@ def get(document_ids, classify, store):
             if response.status_code != 200:
                 continue
 
-            keywords = classify(response.text)
-            store(document_id, keywords)
+            keywords = AiClassifyText.classify(response.text) # we could move this and the next line to a separate function
+            WordClassDB.store(document_id, keywords)
+      
+            
+get(["20190000001"])

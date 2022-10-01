@@ -70,6 +70,12 @@ def get_keywords(text, length):
     keywords.sort(key=lambda x: keywords_count[x], reverse=True)
     return keywords[:length]
     
+     
+def classify(text):
+    readData = text
+    cleanedText = pre_process(readData)
+    keywords = get_keywords(cleanedText, 10)
+    return keywords
 
 # datafromFile = open("retroreport.txt", "r", encoding="utf8")
 # readData = datafromFile.read()

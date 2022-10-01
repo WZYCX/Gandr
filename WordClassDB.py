@@ -12,10 +12,6 @@ class WordClassDB:
             """)
         self.conn.commit()
 
-    def add_paper(self, paper, keyword):
-        self.c.execute('INSERT INTO words VALUES (?, ?)', (paper, keyword))
-        self.conn.commit()
-
     def get_papers_by_paper(self, paper):
         self.c.execute('SELECT * FROM words WHERE paper=?', (paper))
         return self.c.fetchone()
@@ -45,6 +41,10 @@ class WordClassDB:
             self.c.execute('INSERT INTO words VALUES (?, ?)', (paper, keyword))
         self.conn.commit()
         
+def store(document_id,keywords):
+    WordClassDB("WordClass.db").add_keywords(document_id,keywords)
+
+
 #WordClassDB("test.db").add_paper(1,"test")
 
 #keywords = ["test","test2","test3"]
