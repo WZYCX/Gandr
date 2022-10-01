@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Titillium";
+    src: url("/static/TitilliumWeb.ttf")
+}
+
+* {
+    margin: 0;
+    font-family: "Titillium";
+}
+
+html {
+    height: 100%;
+}
+
+.test {
+    height: 100%;
+    padding-top: 200px
+}
+
+.test h1 {
+    text-align: center
+}
