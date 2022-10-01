@@ -45,9 +45,9 @@ class WordClassDB:
             self.c.execute('INSERT INTO words VALUES (?, ?)', (paper, keyword))
         self.conn.commit()
         
-WordClassDB("test.db").add_paper(1,"test")
+#WordClassDB("test.db").add_paper(1,"test")
 
-keywords = ["test","test2","test3"]
+#keywords = ["test","test2","test3"]
 
 #WordClassDB("test.db").add_keywords(1,keywords)
 #WordClassDB("test.db").add_keywords(2,keywords[0:2])
