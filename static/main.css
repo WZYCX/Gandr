@@ -8,15 +8,77 @@
     font-family: "Titillium";
 }
 
-html {
-    height: 100%;
+button, input {
+    all: unset;
 }
 
-.test {
+html, body {
     height: 100%;
-    padding-top: 200px
+    width: 100%;
 }
 
-.test h1 {
-    text-align: center
+.centre {
+    position: relative;
+    height: 200px;
+    width: 50%;
+    top: 25%;
+    left: 25%;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.title {
+    text-align: center;
+}
+
+.title p {
+    color: #d2ddec;
+    font-family: "century gothic";
+    font-size: 20px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.title h1 {
+    color: #75abf1;
+    font-family: "century gothic";
+    text-align: center;
+    font-size: 60px;
+    display: inline-block;
+}
+
+.searchbar {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.searchbar input,
+.searchbar button {
+    background: #edf5ff;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: #4e5e5e;
+    fill: #4e5e5e;
+}
+
+.searchbar input {
+    width: 82%;
+    height: 30px;
+    float: left;
+    padding-left: 4%;
+    border-radius: 10px 0 0 10px;
+}
+
+.searchbar button {
+    width: 10%;
+    height: 30px;
+    float: right;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 0 10px 10px 0;
+}
+
+.searchbar button svg {
+    margin-top: 1px;
+    height: 28px;
 }
