@@ -43,4 +43,4 @@ wasabi==0.10.1
 Werkzeug==2.2.2
 yarl==1.8.1
 zipp==3.8.1
-https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.0.0a0/en_core_web_trf-3.0.0a0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.4.0/en_core_web_trf-3.4.0-py3-none-any.whl
