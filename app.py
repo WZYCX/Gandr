@@ -18,13 +18,11 @@ def main():
 def search():
     query = request.args.get('q')
     keywords = AiClassifyText.classify(query)
-    print(keywords)
     document_ids = db.get_papers_by_keywords(keywords)[:5]
 
     results = list()
     for document_id in document_ids:
         results.append(NTRS.get_document(document_id).json())
-    print(results[0])
 
     return render_template(
         'search.html',
