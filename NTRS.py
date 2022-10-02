@@ -1,53 +1,91 @@
-import asyncio
 import aiohttp
 import requests
-import WordClassDB
-import AiClassifyText
+import time
+
 
 # Removes certificate verification warning from requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-API = 'https://www.ntrs.nasa.gov/api/'
+HOST = 'https://www.ntrs.nasa.gov'
 HEADERS = {"Host": "ntrs.nasa.gov"}
 
 
-# Gets the documents using the document ids from the NTRS API asyncronously
+class Ratelimit:
 
-async def _get(document_ids, classify, store):
+    def __init__(self, limit, minutes):
+        self.limit = limit
+        self.minutes = minutes
+        self.called = 0
+        self.num = 0
 
+    def wait(self):
+        while self.called + 60 > time.time():
+            time.sleep(0.01)
+
+    def __call__(self):
+        if self.called + 60*self.minutes > time.time():
+            if self.num >= self.limit:
+                print("RATELIMITED! Time to wait:", self.called + 60*self.minutes - time.time())
+                self.wait()
+                self.called = time.time()
+                self.num = 1
+            else:
+                self.num += 1
+        else:
+            self.called = time.time()
+            self.num = 1
+
+
+# Ratelimits are the requests per number of minutes
+ratelimit = Ratelimit(500, 15)
+
+
+# Sends a get request to the NTRS API asynchronously
+
+async def async_get_json(endpoint, retry=True):
+    ratelimit()
     async with aiohttp.ClientSession() as session:
-        for document_id in document_ids:
-            url = API + f"citations/{document_id}/downloads/{document_id}.txt"
-
-            async with session.get(url, headers=HEADERS, ssl=False) as response:
-
-                if response.status != 200:
-                    continue
-                text = await response.text()
-
-            keywords = classify(text)
-            store(document_id, keywords)
-
-def async_get(document_ids, function):
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(_get(document_ids, function))
+        async with session.get(HOST + endpoint, headers=HEADERS, ssl=False) as response:
+            if response.status != 200:
+                # print(response.status, response.text)
+                if retry:
+                    ratelimit.wait()
+                    await async_get_json(endpoint, retry=False)
+                else:
+                    return None
+            return await response.json()
 
 
-# Gets the documents using the document ids from the NTRS API
+async def async_get_text(endpoint, retry=True):
+    ratelimit()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(HOST + endpoint, headers=HEADERS, ssl=False) as response:
+            if response.status != 200:
+                # print(response.status, response.text)
+                if retry:
+                    ratelimit.wait()
+                    await async_get_text(endpoint, retry=False)
+                else:
+                    return None
+            return await response.text()
 
-def get(document_ids):
 
-    for document_id in document_ids:
-            url = API + f"citations/{document_id}/downloads/{document_id}.txt"
-            response = requests.get(url, headers=HEADERS, verify=False)
+# Sends a get request to the NTRS API
 
-            if response.status_code != 200:
-                continue
-
-            keywords = AiClassifyText.classify(response.text) # we could move this and the next line to a separate function
-            WordClassDB.store(document_id, keywords)
-      
-            
-get(["20190000001"])
+def get(endpoint, retry=True):
+    ratelimit()
+    response = requests.get(
+        HOST + endpoint,
+        headers=HEADERS,
+        verify=False
+    )
+    if response.status_code != 200:
+        # print(response.status_code, response.text)
+        if retry:
+            ratelimit.wait()
+            get(endpoint, retry=False)
+        else:
+            return None
+    return response
