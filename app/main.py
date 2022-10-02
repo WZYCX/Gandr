@@ -33,6 +33,10 @@ def search():
         NTRS=NTRS.HOST
     )
 
+@app.route('/favicon', methods=['GET'])
+def main():
+    return render_template('favicon.ico')
+
 
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=False)
