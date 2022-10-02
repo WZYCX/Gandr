@@ -54,27 +54,30 @@ def get_keywords(text, length):
     keywords = list()
     keywords_count = dict()
 
-    for token in nlp(text):
-        if token.text in nlp.Defaults.stop_words:
-            continue
-        if token.text in punctuation:
-            continue
-        if token.pos_ in POS_TAG:
-            keyword = token.text
-            if keyword in keywords_count:
-                keywords_count[keyword] += 1
-            else:
-                keywords_count[keyword] = 1
-                keywords.append(keyword)
+    for chunk in range(len(text)//1000000+1):
+        for token in nlp(text[chunk*1000000:(chunk+1)*1000000]):
+            if token.text in nlp.Defaults.stop_words:
+                continue
+            if token.text in punctuation:
+                continue
+            if token.text in ["fig"]:
+                continue
+            if token.pos_ in POS_TAG:
+                keyword = token.text
+                if keyword in keywords_count:
+                    keywords_count[keyword] += 1
+                else:
+                    keywords_count[keyword] = 1
+                    keywords.append(keyword)
 
     keywords.sort(key=lambda x: keywords_count[x], reverse=True)
     return keywords[:length]
     
      
-def classify(text):
+def classify(text, length=10):
     readData = text
     cleanedText = pre_process(readData)
-    keywords = get_keywords(cleanedText, 10)
+    keywords = get_keywords(cleanedText, length)
     return keywords
 
 # datafromFile = open("retroreport.txt", "r", encoding="utf8")
