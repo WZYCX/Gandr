@@ -49,7 +49,7 @@ def summarizeText(text, per):
     return summary
 
 
-def get_keywords(text, length):
+def get_keywords(text):
 
     keywords = list()
     keywords_count = dict()
@@ -71,14 +71,15 @@ def get_keywords(text, length):
                     keywords.append(keyword)
 
     keywords.sort(key=lambda x: keywords_count[x], reverse=True)
-    return keywords[:length]
+    return keywords
     
      
-def classify(text, length=10):
+def classify(text):
     readData = text
     cleanedText = pre_process(readData)
-    keywords = get_keywords(cleanedText, length)
+    keywords = get_keywords(cleanedText)
     return keywords
+
 
 # datafromFile = open("retroreport.txt", "r", encoding="utf8")
 # readData = datafromFile.read()
