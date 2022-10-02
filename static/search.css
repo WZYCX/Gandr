@@ -93,14 +93,15 @@
     background: #fafcff;
     margin: 50px;
   	-webkit-box-shadow: 2px 2px 8px 1px #aab1b9;
-    padding: 10px;
+    padding: 14px;
     border-radius: 6px;
 }
 
-.result h1 {
+.result h1 a {
     font-size: 20px;
     color: #75abf1;
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .result h3 {
