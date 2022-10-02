@@ -5,13 +5,14 @@ import WordClassDB
 import NTRS
 
 
-app = Flask(__name__, template_folder='app/static')
+app = Flask(__name__)
 db = WordClassDB.WordClassDB("WordClass.db")
 db.clear_duplicates()
 
 
 @app.route('/', methods=['GET'])
 def main():
+    return "Something?"
     return render_template('main.html')
 
 @app.route('/search', methods=['GET'])
