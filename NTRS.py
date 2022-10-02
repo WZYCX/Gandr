@@ -8,7 +8,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-HOST = 'https://www.ntrs.nasa.gov'
+HOST = 'https://ntrs.nasa.gov'
 HEADERS = {"Host": "ntrs.nasa.gov"}
 
 
@@ -44,29 +44,29 @@ ratelimit = Ratelimit(500, 15)
 
 # Sends a get request to the NTRS API asynchronously
 
-async def async_get_json(endpoint, retry=True):
+async def async_get_json(endpoint, retry=False):
     ratelimit()
     async with aiohttp.ClientSession() as session:
         async with session.get(HOST + endpoint, headers=HEADERS, ssl=False) as response:
             if response.status != 200:
                 print(response.status, response.text)
-                if retry:
+                if retry: # check if ratelimit error
                     ratelimit.wait()
-                    await async_get_json(endpoint, retry=False)
+                    return await async_get_json(endpoint, retry=False)
                 else:
                     return None
             return await response.json()
 
 
-async def async_get_text(endpoint, retry=True):
+async def async_get_text(endpoint, retry=False):
     ratelimit()
     async with aiohttp.ClientSession() as session:
         async with session.get(HOST + endpoint, headers=HEADERS, ssl=False) as response:
             if response.status != 200:
                 print(response.status, response.text)
-                if retry:
+                if retry: # check if ratelimit error
                     ratelimit.wait()
-                    await async_get_text(endpoint, retry=False)
+                    return await async_get_text(endpoint, retry=False)
                 else:
                     return None
             return await response.text()
@@ -85,7 +85,20 @@ def get(endpoint, retry=True):
         # print(response.status_code, response.text)
         if retry:
             ratelimit.wait()
-            get(endpoint, retry=False)
+            return get(endpoint, retry=False)
         else:
             return None
+    return response
+
+
+def get_document(document_id):
+    ratelimit()
+    response = requests.get(
+        HOST + "/api/citations/%s" % document_id,
+        headers=HEADERS,
+        verify=False
+    )
+    if response.status_code != 200:
+        print(response.status_code, response.text)
+        return None
     return response
