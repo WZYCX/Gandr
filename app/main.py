@@ -6,7 +6,7 @@ import NTRS
 
 
 app = Flask(__name__, template_folder='static')
-db = WordClassDB.WordClassDB("WordClass.db") # WordClassDB.WordClassDB("WordClassDB.db")
+db = WordClassDB.WordClassDB("WordClass.db")
 db.clear_duplicates()
 
 
