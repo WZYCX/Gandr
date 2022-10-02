@@ -1,18 +1,17 @@
 from flask import Flask, render_template, request
 
 # import AiClassifyText
-import WordClassDB
-import NTRS
+import app.WordClassDB
+import app.NTRS
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='app/static')
 db = WordClassDB.WordClassDB("WordClass.db")
 db.clear_duplicates()
 
 
 @app.route('/', methods=['GET'])
 def main():
-    return "Something?"
     return render_template('main.html')
 
 @app.route('/search', methods=['GET'])
