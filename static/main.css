@@ -8,7 +8,7 @@
     font-family: "Titillium";
 }
 
-button, input {
+input, button, a {
     all: unset;
 }
 
@@ -32,7 +32,7 @@ html, body {
 }
 
 .title p {
-    color: #d2ddec;
+    color: #c0d0e7;
     font-family: "century gothic";
     font-size: 20px;
     margin-right: 10px;
@@ -57,12 +57,12 @@ html, body {
     background: #edf5ff;
     padding-top: 2%;
     padding-bottom: 2%;
-    color: #4e5e5e;
-    fill: #4e5e5e;
+    color: #616d7d;
+    fill: #616d7d;
 }
 
 .searchbar input {
-    width: 82%;
+    width: 84%;
     height: 30px;
     float: left;
     padding-left: 4%;
@@ -70,7 +70,7 @@ html, body {
 }
 
 .searchbar button {
-    width: 10%;
+    width: 8%;
     height: 30px;
     float: right;
     padding-left: 2%;
@@ -81,4 +81,5 @@ html, body {
 .searchbar button svg {
     margin-top: 1px;
     height: 28px;
+    cursor: pointer;
 }
