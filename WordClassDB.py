@@ -19,7 +19,7 @@ class WordClassDB:
         return self.c.fetchone()
     
     def get_papers_by_keyword(self, keyword):
-        self.c.execute('SELECT * FROM words WHERE keyword=?', (keyword,))
+        self.c.execute('SELECT paper FROM words WHERE keyword=?', (keyword,))
         return self.c.fetchall()
 
     def get_all(self):

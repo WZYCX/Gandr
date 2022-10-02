@@ -10,12 +10,12 @@ def retrieve(keywords):
     papers = []
     for keyword in keywords:
         current = db.get_papers_by_keyword(keyword)
-        if current not in papers:
+        if current not in papers and len(current) > 0:
             papers.append(current)
     return papers
 
 #tests
 
-queryKeywords = processQuery("How can we shield against radiation from space?")
-print(queryKeywords)
-print(retrieve(queryKeywords))
+queryKeywords = processQuery("Why does the Nasa engine produce noise?")
+print(queryKeywords) #returns ['nasa', 'engine', 'produce']
+print(retrieve(queryKeywords)) #returns [[(20190000001,)]] which is a weird format but it works
