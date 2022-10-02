@@ -49,7 +49,7 @@ async def async_get_json(endpoint, retry=True):
     async with aiohttp.ClientSession() as session:
         async with session.get(HOST + endpoint, headers=HEADERS, ssl=False) as response:
             if response.status != 200:
-                # print(response.status, response.text)
+                print(response.status, response.text)
                 if retry:
                     ratelimit.wait()
                     await async_get_json(endpoint, retry=False)
@@ -63,7 +63,7 @@ async def async_get_text(endpoint, retry=True):
     async with aiohttp.ClientSession() as session:
         async with session.get(HOST + endpoint, headers=HEADERS, ssl=False) as response:
             if response.status != 200:
-                # print(response.status, response.text)
+                print(response.status, response.text)
                 if retry:
                     ratelimit.wait()
                     await async_get_text(endpoint, retry=False)

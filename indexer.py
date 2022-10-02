@@ -65,7 +65,7 @@ async def async_index_all():
 def index_all():
     params = {
         "sort.field": "published",
-        "sort.order": "desc",
+        "sort.order": "asc",
         "page.size": 100,
         "page.from": 0
     }
