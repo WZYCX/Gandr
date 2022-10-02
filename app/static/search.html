@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>gandr - {{ query }}</title>
+        <link rel="Shortcut Icon" href="static/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="static/main.css">
+        <link rel="stylesheet" href="static/search.css">
+    </head>
+    <body>
+        <div class="menubar">
+            <div class="title">
+                <a href="/">
+                    <p>take a</p>
+                    <h1>gandr</h1>
+                </a>
+            </div>
+            <form id="search form" class="searchbar" role="search">
+                <!-- create a cycle of placeholders -->
+                <!--
+                    How can we shield against radiation from space?
+                    How do we grow food in space or on other planets?
+                    Will AI or machine learning change how we explore space?
+                    How can we protect the Earth from asteroids?
+                    Can we create space colonies on Mars?
+                -->
+                <input class="search" type="search" id="query" name="q" autocomplete="off"
+                placeholder="How can we shield against radiation from space?"
+                value="{{ query }}"required><!--
+           ---><button>
+                    <svg viewBox="0 0 1024 1024">
+                        <path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        <!-- <div class="options">
+        </div> -->
+
+        <div class="results">
+            <h1>
+                {{ results_count }} result{{ results_plural }} for "{{ query }}"
+            </h1>
+            {% for result in results %}
+            <div class="result">
+                <h1>
+                    <a href="{{ NTRS }}/citations/{{ result["id"] }}" target="_blank">{{ result.title }}</a>
+                </h1>
+                <h3>
+                    {{ result["distributionDate"][:10] }}
+                </h3>
+                <br>
+                {% for author in result["authorAffiliations"] %}
+                <h2>{{ author["meta"]["author"]["name"] }}</h2>
+                {% endfor %}
+                <br><br>
+                <p>
+                    {% if result["abstract"] %}
+                    {{ result["abstract"] }}
+                    {% else %}
+                    No abstract available.
+                    {% endif %}
+                </p>
+                <br><br>
+                <a href="{{ NTRS + result["downloads"][0]["links"]["original"] }}" target="_blank">
+                    click to download
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

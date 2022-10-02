@@ -1,0 +1,132 @@
+.menubar {
+    position: sticky;
+    top: 0;
+    height: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #edf5ff;
+    -webkit-box-shadow: 1px 2px 8px 1px #dee3e8;
+}
+
+.title {
+    display: inline;
+    text-align: left;
+    margin-left: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.title p {
+    color: #c0d0e7;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+.title h1 {
+    font-size: 34px;
+}
+
+.searchbar {
+    padding: 0;
+    display: inline;
+    white-space: nowrap;
+}
+
+.searchbar input,
+.searchbar button {
+    background: #ffffff;
+    padding: 0;
+    color: #4e5e5e;
+    fill: #4e5e5e;
+}
+
+.searchbar input {
+    width: 300px;
+    height: 40px;
+    float: none;
+    padding-left: 10px;
+    border-radius: 6px 0 0 6px;
+    margin-left: 40px;
+    font-size: 14px;
+}
+
+.searchbar button {
+    width: 35px;
+    height: 40px;
+    float: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0 6px 6px 0;
+    vertical-align: bottom;
+}
+
+.searchbar button svg {
+    margin-top: 7.5px;
+    margin-bottom: 1px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.options {
+    border-bottom: #4e5e5e49 1px solid;
+    height: 40px;
+    width: 100%;
+}
+
+.results {
+    padding-top: 40px;
+    height: calc(100% - 141px);
+    text-align: center;
+
+}
+
+.results h1 {
+    font-size: 20px;
+    color: #616d7d;
+}
+
+.result {
+    vertical-align: middle;
+    display: inline-block;
+    width: 300px;
+    background: #fafcff;
+    margin: 50px;
+  	-webkit-box-shadow: 2px 2px 8px 1px #aab1b9;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+.result h1 a {
+    font-size: 20px;
+    color: #75abf1;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.result h3 {
+    font-size: 12px;
+    color: #c0d0e7;
+}
+
+.result h2 {
+    all: unset;
+    font-size: 14px;
+    background: #f3f9ff;
+    color: #99bcee;
+    padding: 2px 10px 2px 10px;
+    border-radius: 10px;
+}
+
+.result p {
+    color: #616d7d;
+    height: 200px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.result a {
+    color: #3f8df3;
+    font-size: 12px;
+    cursor: pointer;
+}
