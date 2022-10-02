@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-# import AiClassifyText
+from app.AiClassifyText import classify
 from app.WordClassDB import WordClassDB
 import app.NTRS as NTRS
 
@@ -17,7 +17,7 @@ def main():
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('q')
-    keywords = AiClassifyText.classify(query)
+    keywords = classify(query)
     document_ids = db.get_papers_by_keywords(keywords)[:5]
 
     results = list()
