@@ -5,7 +5,7 @@ class WordClassDB:
     def __init__(self, db_name):
 
         self.db_name = db_name
-        self.conn = sqlite3.connect(self.db_name)
+        self.conn = sqlite3.connect(self.db_name, check_same_thread=False)
 
         self.c = self.conn.cursor()
         self.c.execute(
