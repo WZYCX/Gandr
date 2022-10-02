@@ -5,7 +5,7 @@ import WordClassDB
 import NTRS
 
 
-app = Flask(__name__, template_folder='static')
+app = Flask(__name__, template_folder='app/static')
 db = WordClassDB.WordClassDB("WordClass.db")
 db.clear_duplicates()
 
@@ -32,10 +32,6 @@ def search():
         results_plural="s" if len(results) != 1 else "",
         NTRS=NTRS.HOST
     )
-
-@app.route('/favicon', methods=['GET'])
-def main():
-    return render_template('favicon.ico')
 
 
 if __name__ == '__main__':
