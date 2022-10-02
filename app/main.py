@@ -2,10 +2,10 @@ from flask import Flask, render_template, request
 
 # import AiClassifyText
 from app.WordClassDB import WordClassDB
-import app.NTRS
+import app.NTRS as NTRS
 
 
-app = Flask(__name__, template_folder='app/static')
+app = Flask(__name__, template_folder='static')
 db = WordClassDB("WordClass.db")
 db.clear_duplicates()
 
