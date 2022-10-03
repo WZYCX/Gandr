@@ -18,7 +18,6 @@ def main():
 def search():
     query = request.args.get('q')
     keywords = ai.pre_process(query).split()
-    print(keywords)
     document_ids = db.get_papers_by_keywords(keywords)[:5]
 
     results = list()
