@@ -1,6 +1,8 @@
 ![GANDR](https://sa-2019.s3.amazonaws.com/media/images/tAsjyXh.2e16d0ba.fill-591x300.png)
 
-#### [Gandr](https://takeagandr.herokuapp.com) is an AI powered search engine that utilizes indexes generated through Natural Language Processing (NLP) to assist researchers in finding reports. To do this we leveraged NLP to process text from documents on the NASA Technical Report Server (NTRS) and summarize them into a collection of keywords.
+[Gandr](https://takeagandr.herokuapp.com) is an AI powered search engine that utilizes indexes generated through Natural Language Processing (NLP) to assist researchers in finding reports. To do this we leveraged NLP to process text from documents on the NASA Technical Report Server (NTRS) and summarize them into a collection of keywords.
+
+Gandr is our submission for the 2022 [NASA Space Apps Challenge](https://www.spaceappschallenge.org/)
 
 
 ## Overview
