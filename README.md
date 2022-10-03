@@ -17,3 +17,6 @@ The NTRS database takes several inputs such as a search query, the authors' name
 Our project allows for a more inclusive method of querying the NTRS, by allowing users to make searches that are relevant to entire documents.
 
 All scripts are written in python. We used SpaCy's NLP model to help us analyize lexical data. asyncio and AIOHTTP were used to scrape files from the NTRS. We used SQLite3 to create and interact with our SQL database. Our front end was created using the Flask framework, with the individual pages structured and styled with HTML and CSS.
+
+## Video Demonstration
+[![image](https://raw.githubusercontent.com/WZYCX/Word-Classification-AI/main/app/static/thumbnail.png)](https://www.youtube.com/watch?v=OLUS1lEPJjs)
