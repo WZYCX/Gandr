@@ -6,8 +6,7 @@ import re
 
 
 POS_TAG = ['PROPN', 'ADJ', 'NOUN', 'VERB']
-# Too large for Heroku
-# nlp = spacy.load("en_core_web_sm") # <----- this is the model
+nlp = spacy.load("en_core_web_sm") # <----- this is the model
 
 
 def pre_process(text):

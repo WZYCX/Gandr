@@ -17,7 +17,7 @@ def main():
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('q')
-    keywords = ai.pre_process(query).split()
+    keywords = ai.classify(query)
     document_ids = db.get_papers_by_keywords(keywords)[:5]
 
     results = list()
