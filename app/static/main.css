@@ -15,66 +15,48 @@ input, button, a {
 html, body {
     height: 100%;
     width: 100%;
+    background: #11151E;
 }
 
 .centre {
     position: relative;
-    height: 200px;
-    width: 50%;
-    top: 25%;
-    left: 25%;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    display: table;
+    width: 488px;
+    top: calc(50% - 100px);
+    left: calc(50% - 244px);
 }
 
 .title {
     text-align: center;
 }
 
-.title p {
-    color: #c0d0e7;
-    font-family: "century gothic";
-    font-size: 20px;
-    margin-right: 10px;
-    display: inline-block;
-}
-
-.title h1 {
-    color: #75abf1;
-    font-family: "century gothic";
-    text-align: center;
-    font-size: 60px;
-    display: inline-block;
-}
-
-.searchbar {
-    padding-left: 20%;
-    padding-right: 20%;
+.title img {
+    width: 300px;
 }
 
 .searchbar input,
 .searchbar button {
-    background: #edf5ff;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    color: #616d7d;
-    fill: #616d7d;
+    background: #292f3e;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #EDCDBC;
+    fill: #EDCDBC;
 }
 
 .searchbar input {
-    width: 84%;
+    width: 420px;
     height: 30px;
     float: left;
-    padding-left: 4%;
+    padding-left: 20px;
     border-radius: 10px 0 0 10px;
 }
 
 .searchbar button {
-    width: 8%;
+    /* width: 40px; */
     height: 30px;
     float: right;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 0 10px 10px 0;
 }
 

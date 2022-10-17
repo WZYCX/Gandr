@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>gandr - {{ query }}</title>
+        <title>GANDR - {{ query }}</title>
         <link rel="Shortcut Icon" href="static/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="static/main.css">
         <link rel="stylesheet" href="static/search.css">
@@ -10,8 +10,7 @@
         <div class="menubar">
             <div class="title">
                 <a href="/">
-                    <p>take a</p>
-                    <h1>gandr</h1>
+                    <img src="static/GANDR.png">
                 </a>
             </div>
             <form id="search form" class="searchbar" role="search">
@@ -60,7 +59,7 @@
                     No abstract available.
                     {% endif %}
                 </p>
-                <br><br>
+                <br>
                 <a href="{{ NTRS + result["downloads"][0]["links"]["original"] }}" target="_blank">
                     click to download
                 </a>

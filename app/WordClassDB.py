@@ -1,6 +1,5 @@
 import sqlite3
 
-
 class WordClassDB:
 
     def __init__(self, db_name):
